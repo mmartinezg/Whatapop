@@ -15,7 +15,7 @@ export class ProductService {
         private _http: Http) { }
 
     getProducts(filter: ProductFilter = undefined): Observable<Product[]> {
-
+        console.log(filter);
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
         | Pink Path                                                        |
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -61,6 +61,14 @@ export class ProductService {
         let search = new URLSearchParams();
         search.set("_sort", "publishedDate");
         search.set("_order", "DESC");
+        if(filter) {
+            if (filter.text) {
+                search.set("q", filter.text);
+            }
+            if (filter.category) {
+                search.set("category.id", filter.category);
+            }
+        }
         let options = new RequestOptions();
         options.search = search;
         return this._http
