@@ -15,7 +15,6 @@ export class ProductService {
         private _http: Http) { }
 
     getProducts(filter: ProductFilter = undefined): Observable<Product[]> {
-        console.log(filter);
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
         | Pink Path                                                        |
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
