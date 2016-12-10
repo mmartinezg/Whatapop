@@ -58,9 +58,13 @@ export class ProductService {
         |   - Búsqueda por estado:                                         |
         |       state=x (siendo x el estado)                               |
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+        let search = new URLSearchParams();
+        search.set("_sort", "publishedDate");
+        search.set("_order", "DESC");
+        let options = new RequestOptions();
+        options.search = search;
         return this._http
-                   .get(`${this._backendUri}/products`)
+                   .get(`${this._backendUri}/products`, options)
                    .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
     }
 
