@@ -4,14 +4,17 @@ import { Observable } from "rxjs/Observable";
 
 import { Product } from "../models/product";
 import { ProductService } from "./product.service";
+import { ProductFilter } from "../models/product-filter";
 
 @Injectable()
 export class SoldProductsResolve implements Resolve<Product[]>{
 
     constructor(private _productService: ProductService) { }
+    private _productFilter: ProductFilter = {};
 
     resolve(): Observable<Product[]> {
-        return this._productService.getProducts();
+        this._productFilter.state = "sold";
+        return this._productService.getProducts(this._productFilter);
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|

@@ -67,6 +67,9 @@ export class ProductService {
             if (filter.category) {
                 search.set("category.id", filter.category);
             }
+            if(filter.state){
+                search.set("state", filter.state);
+            }
         }
         let options = new RequestOptions();
         options.search = search;
