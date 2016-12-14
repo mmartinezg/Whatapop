@@ -1,7 +1,18 @@
 import { Injectable } from "@angular/core";
+import { Resolve } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+
+import { Product } from "../models/product";
+import { ProductService } from "./product.service";
 
 @Injectable()
-export class SoldProductsResolve {
+export class SoldProductsResolve implements Resolve<Product[]>{
+
+    constructor(private _productService: ProductService) { }
+
+    resolve(): Observable<Product[]> {
+        return this._productService.getProducts();
+    }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Yellow Path                                                      |
